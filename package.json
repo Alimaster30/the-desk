@@ -1,0 +1,43 @@
+{
+  "name": "telnyx-baileys-desk",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --experimental-strip-types src/dev.ts",
+    "start": "node --experimental-strip-types src/server/index.ts",
+    "voice:whatsapp": "node --experimental-strip-types src/whatsapp-voice.ts",
+    "webhook:telnyx": "node --experimental-strip-types src/telnyx-webhook.ts",
+    "build": "vite build",
+    "test": "node --experimental-strip-types --test src/server/logic.test.ts src/server/atlas.test.ts src/server/order-logic.test.ts src/server/text-agent.test.ts src/server/orders.test.ts src/server/whatsapp.test.ts src/server/whatsapp-gateway.test.ts src/server/voice.test.ts src/server/sms.test.ts src/server/webhook-relay.test.ts web/src/auth-validation.test.ts web/src/phone.test.ts",
+    "migrate:atlas": "node --experimental-strip-types src/migrate-atlas.ts",
+    "check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@langchain/google-genai": "2.3.6",
+    "@telnyx/webrtc": "^2.25.0",
+    "baileys": "github:WhiskeySockets/Baileys#81345beb67ca3fb0eb79a2c20cd4ac24da517929",
+    "fastify": "^5.6.1",
+    "langchain": "1.6.5",
+    "mongodb": "^6.21.0",
+    "pino": "^9.6.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "ws": "8.22.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/ws": "8.18.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.2"
+  }
+}
