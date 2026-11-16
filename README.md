@@ -36,10 +36,9 @@ Open http://127.0.0.1:5173. For the built app, run `npm.cmd run build` followed 
 
 ## Accounts
 
-- `admin@desk.com`: admin.
-- `tahir.ali@desk.com`: regular user.
+Once your instance is running, use **Create an account** to register with your own email and password. Public signup creates a regular user. To give your own account admin access, have the deployment owner set its `role` to `admin` in the `users` collection of the configured MongoDB database, then sign in again.
 
-Both use the password supplied during setup. Passwords are stored as salted scrypt hashes. The two previous accounts and their linked records are retained with the regular user role. Public signup always creates a regular user.
+This repository ships without accounts or a database. The startup instructions above assume you have an existing SQLite database to migrate or an Atlas database where migration has already completed. A fresh clone with a blank database needs a separate initialization step, which the project does not currently provide.
 
 ## Migration behavior
 
