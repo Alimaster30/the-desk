@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
+import { readJson } from './api-response'
 import { validateAuth, type AuthFields, type AuthMode } from './auth-validation'
 import { PageHeading, EmptyState, Icon } from './ui'
 
@@ -60,12 +61,6 @@ const countries = [
   ['FR', 'France'],
   ['AE', 'United Arab Emirates'],
 ] as const
-
-async function readJson<T>(response: Response): Promise<T> {
-  const body = await response.json() as T & { error?: string }
-  if (!response.ok) throw new Error(body.error || 'Request failed.')
-  return body
-}
 
 function dollars(value: string, digits = 2) {
   const amount = Number(value)

@@ -1,6 +1,18 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import { validateAuth } from './auth-validation.ts'
+import { readJson } from './api-response.ts'
+
+test('API responses handle unavailable servers and invalid JSON without exposing parser errors', async () => {
+  for (const response of [new Response('', { status: 500 }), new Response('<html>Bad Gateway</html>', { status: 502 })]) {
+    await assert.rejects(readJson(response), /app server is unavailable/)
+  }
+  await assert.rejects(readJson(new Response('')), /empty or invalid response/)
+  await assert.rejects(readJson(Response.json(null)), /empty response/)
+  await assert.rejects(readJson(Response.json({ error: 'Invalid email or password.' }, { status: 401 })), /Invalid email or password/)
+  const user = { id: 1, name: 'Test admin', role: 'admin' }
+  assert.deepEqual(await readJson(Response.json(user)), user)
+})
 
 test('signup validates name, email and the existing eight-character password rule', () => {
   assert.deepEqual(validateAuth('signup', { name: ' ', email: 'not-an-email', password: 'short' }), {

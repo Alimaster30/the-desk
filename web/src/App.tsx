@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { readJson } from './api-response'
 import { mapState, onCallUpdate, resetPhone } from './phone'
 import { Dialer } from './Dialer'
 import { AdminPage, AuthScreen, BillingPage, Dashboard, NumbersPage, type SessionUser } from './desk'
@@ -59,12 +60,6 @@ type WaLink = {
   qrDataUrl: string | null
   error: string | null
   type?: string
-}
-
-async function readJson<T>(response: Response): Promise<T> {
-  const body = await response.json() as T & { error?: string }
-  if (!response.ok) throw new Error(body.error || 'Request failed.')
-  return body
 }
 
 function minutes(seconds: number | null) {
