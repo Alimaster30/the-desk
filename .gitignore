@@ -5,30 +5,44 @@ node_modules/
 /coverage/
 *.tsbuildinfo
 
-# Credentials, sessions, databases, recordings and local backups
+# Local credentials and key material
 .env
 .env.*
 !.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Runtime data, WhatsApp sessions and database backups
 /data/
 *.db
 *.db-*
 *.sqlite
+*.sqlite-*
 *.sqlite3
-*.pem
-*.key
-/*.wav
+*.sqlite3-*
+*.bak
 
-# Local tools, caches and verification artifacts
+# Local tools, recordings and verification artifacts
 /.tools/
 /.npm-cache/
 /artifacts/
+/*.wav
+/*.mp3
+/*.ogg
+/*.m4a
+*.exe
 *.log
 *.tmp
+# Screenshots/ contains reviewed demo images and is tracked.
 
-# Local agent/editor installations and reference files
+# Local agent/editor settings and reference files
 /.agents/
 /.cursor/
 /.impeccable/
+/.idea/
+/.vscode/
 /ponytail/
 /skills-lock.json
 /login-signup.jpg
